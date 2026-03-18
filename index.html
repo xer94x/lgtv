@@ -410,7 +410,11 @@
 </div>
 
 <script>
-const M3U_URL = "https://i.mjh.nz/LG/it.m3u8";
+const M3U_SOURCES = [
+  "https://corsproxy.io/?url=https://i.mjh.nz/LG/it.m3u8",
+  "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://i.mjh.nz/LG/it.m3u8"),
+  "https://i.mjh.nz/LG/it.m3u8",
+];
 
 const CAT_KEYWORDS = {
   "🧒 Kids / Anime": ["inazuma","inuyasha","teen","yu-gi","car city","duck","masha","pocoyo","sonic","icarly","pop","sponge","supertoon","teletubb","video game","kid","bim bum","cartoon","bamb","puff","play"],
@@ -479,10 +483,19 @@ async function loadChannels() {
   showErr(null);
   document.getElementById("tip").classList.remove("show");
 
+  let text = null, lastErr = null;
+  for (const url of M3U_SOURCES) {
+    try {
+      setStatus("loading", "Carico playlist...");
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const t = await res.text();
+      if (t && t.includes('#EXTINF')) { text = t; break; }
+    } catch(e) { lastErr = e; }
+  }
+
   try {
-    const res = await fetch(M3U_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const text = await res.text();
+    if (!text) throw lastErr || new Error("Nessuna sorgente disponibile");
     channelsData = parseM3U(text);
     channelsData.sort((a, b) => (a.num || 9999) - (b.num || 9999));
 
@@ -586,4 +599,5 @@ loadChannels();
 setInterval(loadChannels, 6 * 60 * 60 * 1000);
 </script>
 </body>
+</html>
 </html>
