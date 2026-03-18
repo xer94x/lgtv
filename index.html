@@ -420,24 +420,33 @@ const M3U_SOURCES = [
   "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
 ];
 
-const CAT_KEYWORDS = {
-  "🧒 Kids / Anime": ["inazuma","inuyasha","teen","yu-gi","car city","duck","masha","pocoyo","sonic","icarly","pop","sponge","supertoon","teletubb","video game","kid","bim bum","cartoon","bamb","puff","play"],
-  "⚽ Sport": ["sport","calcio","goal","football","basket","tennis","motor","golf","rally","red bull","turbo","poker","gara","formula","moto","swim","run","fit","outdoor","hunting","fish","ski","snow","surf","game sport"],
-  "🔪 Crime & Thriller": ["crime","forensic","giallo","guardia","polizia","investigat","mystery","thriller","serial","killer","detect","cold case","dateline"],
-  "🍕 Food & Lifestyle": ["food","cucina","chef","gambero","hell's kitchen","hgtv","lifestyle","moda","fashion","beauty","home","casa","viaggi","travel","adventure","pet","garden","diy","design"],
-  "🌿 Natura & Doc": ["natura","earth","discovery","wild","animal","ocean","green","planet","geo","national","nature","climate","forest","mare","montagna","acqua"],
-  "🎬 Cinema & Film": ["cine","film","movie","cinema","western","action","horror","comedy","drama","romance","commed","commedia","thriller","classic"],
-  "🎵 Musica": ["music","radio","lounge","jazz","rock","pop","hip hop","kpop","k-pop","hit","dance","80","70","dance","italia tv","vevo","mtv","song"],
-  "📰 News": ["news","tg","giornale","meteo","weather","bloomberg","cnn","al jazeera","euronews","france 24","sky news","rai news","sole 24","bbc","notizie","raiuno","raidue","raitre","la7","la 7","canale 5","italia 1","rete 4","rete4","rai 1","rai 2","rai 3"],
-  "📺 Serie & Fiction": ["serie","fiction","soap","drama","sitcom","show","real","story","stories","telenovela","turco","coreana","korean","anime adult","adult"],
-};
+const LANG_MAP = [
+  { lang: "🇮🇹 Italiano",  keys: ["italian","italiano","italy"," it ","(it)","rai ","rai1","rai2","rai3","mediaset","canale 5","italia 1","rete 4","la7","dmax","nove","cielo","focus","real time","tv2000","sky tg","sportitalia","k2 ","boing","cartoonito","super!","deejay","radio italia","r101","rtl","virgin radio"] },
+  { lang: "🇬🇧 English",   keys: ["english","united kingdom"," uk ","(uk)"," us ","(us)","united states","bbc","itv","channel 4","channel 5","sky one","sky atlantic","discovery","nat geo","history channel","cnn","fox ","nbc","abc ","cbs ","hbo","comedy central","cartoon network","nickelodeon","paramount","mtv","food network","hgtv","tlc ","travel channel","amc ","syfy","animal planet"] },
+  { lang: "🇩🇪 Deutsch",   keys: ["german","deutsch","germany"," de ","(de)","ard","zdf","sat.1","sat1","pro7","pro sieben","rtl","kabel","vox ","tele 5","sixx","sport1","n24","welt ","phoenix","kika","tagesschau"] },
+  { lang: "🇫🇷 Français",  keys: ["french","français","france"," fr ","(fr)","tf1","france 2","france 3","france 4","france 5","m6 ","canal+","arte","bfm","cnews","lci ","c8 ","tmc","w9 ","nrj12","gulli","6ter","comedie","paris premiere"] },
+  { lang: "🇪🇸 Español",   keys: ["spanish","español","spain","espana","españa"," es ","(es)","la1","la2","telecinco","antena 3","cuatro","la sexta","tve","television espanola","canal sur","telemadrid","rtve"] },
+  { lang: "🇵🇹 Português", keys: ["portuguese","português","portugal"," pt ","(pt)","rtp","sic ","tvi "] },
+  { lang: "🇧🇷 Português (BR)", keys: ["brasil","brazil"," br ","(br)","globo","record","sbt ","band ","sportv br","multishow","telecine"] },
+  { lang: "🇳🇱 Nederlands",keys: ["dutch","netherlands","holland"," nl ","(nl)","npo ","rtl4","rtl5","rtl7","rtl8","veronica nl"] },
+  { lang: "🇵🇱 Polski",    keys: ["polish","poland","polska"," pl ","(pl)","tvp","polsat","tvn "] },
+  { lang: "🇸🇪 Svenska",   keys: ["swedish","sweden","sverige"," se ","(se)","svt","tv4 ","kanal 5","kanal9"] },
+  { lang: "🇷🇺 Русский",   keys: ["russian","russia"," ru ","(ru)","perviy","russia 1","ntv ","ren tv","tnt ","channel one","rtvi"] },
+  { lang: "🇹🇷 Türkçe",    keys: ["turkish","turkey","türkiye"," tr ","(tr)","trt ","atv ","kanal d","show tv","star tv","fox tr","haber turk","ntv tr"] },
+  { lang: "🇦🇷 Español (LA)", keys: ["latin","latinoamerica","argentina","mexico","colombia","chile"," la ","(la)","telefe","azteca","univision","telemundo","canal 13"] },
+  { lang: "🇨🇳 中文",       keys: ["chinese","china","taiwan","mandarin","cantonese"," cn ","(cn)"," tw ","(tw)","cctv","tvbs","phoenix tv","ntdtv"] },
+  { lang: "🇯🇵 日本語",     keys: ["japanese","japan"," jp ","(jp)","nhk","tv asahi","fuji tv","tbs jp","nippon"] },
+  { lang: "🇰🇷 한국어",     keys: ["korean","korea"," kr ","(kr)","kbs","mbc ","sbs kr","arirang","ytn","jtbc"] },
+  { lang: "🇮🇳 Hindi",     keys: ["hindi","india","indian"," in ","(in)","zee","star plus","sony ","colors ","aaj tak","ndtv","times now","sun tv","dd national"] },
+  { lang: "🇸🇦 عربي",      keys: ["arabic","arab","arabe"," ar ","(ar)","al jazeera","al arabiya","mbc ","rotana","nile","alaraby","al mayadeen"] },
+];
 
 function getCategory(name, group) {
-  const n = (name + ' ' + (group||'')).toLowerCase();
-  for (const [cat, keywords] of Object.entries(CAT_KEYWORDS)) {
-    if (keywords.some(k => n.includes(k))) return cat;
+  const n = (" " + (name||"") + " " + (group||"") + " ").toLowerCase();
+  for (const { lang, keys } of LANG_MAP) {
+    if (keys.some(k => n.includes(k))) return lang;
   }
-  return "📺 Generale";
+  return "🌐 Altro";
 }
 
 let channelsData = [];
@@ -523,7 +532,7 @@ function renderCatFilter() {
   const el = document.getElementById("cat-filter");
   el.innerHTML = "";
   const existingCats = new Set(channelsData.map(c => c.cat));
-  const catOrder = ["Tutti","🧒 Kids / Anime","⚽ Sport","🔪 Crime & Thriller","🍕 Food & Lifestyle","🌿 Natura & Doc","🎬 Cinema & Film","🎵 Musica","📰 News","📺 Serie & Fiction","📺 Generale"];
+  const catOrder = ["Tutti","🇮🇹 Italiano","🇬🇧 English","🇩🇪 Deutsch","🇫🇷 Français","🇪🇸 Español","🇵🇹 Português","🇧🇷 Português (BR)","🇳🇱 Nederlands","🇵🇱 Polski","🇸🇪 Svenska","🇷🇺 Русский","🇹🇷 Türkçe","🇦🇷 Español (LA)","🇨🇳 中文","🇯🇵 日本語","🇰🇷 한국어","🇮🇳 Hindi","🇸🇦 عربي","🌐 Altro"];
   const sorted = catOrder.filter(c => c === "Tutti" || existingCats.has(c));
 
   sorted.forEach(cat => {
@@ -563,7 +572,7 @@ function renderChannels() {
 
   document.getElementById("ch-count").textContent = `${filtered.length} / ${channelsData.length} canali IT`;
 
-  const catOrder = ["📰 News","⚽ Sport","🎬 Cinema & Film","📺 Serie & Fiction","🌿 Natura & Doc","🍕 Food & Lifestyle","🔪 Crime & Thriller","🎵 Musica","🧒 Kids / Anime","📺 Generale"];
+  const catOrder = ["🇮🇹 Italiano","🇬🇧 English","🇩🇪 Deutsch","🇫🇷 Français","🇪🇸 Español","🇵🇹 Português","🇧🇷 Português (BR)","🇳🇱 Nederlands","🇵🇱 Polski","🇸🇪 Svenska","🇷🇺 Русский","🇹🇷 Türkçe","🇦🇷 Español (LA)","🇨🇳 中文","🇯🇵 日本語","🇰🇷 한국어","🇮🇳 Hindi","🇸🇦 عربي","🌐 Altro"];
   const sortedCats = [...new Set([...catOrder, ...Object.keys(groups)])].filter(c => groups[c]);
 
   for (const cat of sortedCats) {
