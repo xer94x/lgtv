@@ -410,10 +410,14 @@
 </div>
 
 <script>
+const LG_IT_URL = "https://i.mjh.nz/LG/it.m3u8";
 const M3U_SOURCES = [
-  "https://corsproxy.io/?url=https://i.mjh.nz/LG/it.m3u8",
-  "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://i.mjh.nz/LG/it.m3u8"),
-  "https://i.mjh.nz/LG/it.m3u8",
+  "https://corsproxy.io/?url=" + encodeURIComponent(LG_IT_URL),
+  "https://api.allorigins.win/raw?url=" + encodeURIComponent(LG_IT_URL),
+  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
+  "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
+  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
+  "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
 ];
 
 const CAT_KEYWORDS = {
@@ -484,14 +488,16 @@ async function loadChannels() {
   document.getElementById("tip").classList.remove("show");
 
   let text = null, lastErr = null;
-  for (const url of M3U_SOURCES) {
+  const labels = ["Proxy1·LG-IT","Proxy2·LG-IT","Proxy1·LG-alt","Proxy2·LG-alt","Proxy1·LG-global","Proxy2·LG-global"];
+  for (let i = 0; i < M3U_SOURCES.length; i++) {
     try {
-      setStatus("loading", "Carico playlist...");
-      const res = await fetch(url);
+      setStatus("loading", `Tentativo ${i+1}/${M3U_SOURCES.length} (${labels[i]})...`);
+      const res = await fetch(M3U_SOURCES[i]);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const t = await res.text();
       if (t && t.includes('#EXTINF')) { text = t; break; }
-    } catch(e) { lastErr = e; }
+      throw new Error("Risposta non valida");
+    } catch(e) { lastErr = e; text = null; }
   }
 
   try {
@@ -599,5 +605,4 @@ loadChannels();
 setInterval(loadChannels, 6 * 60 * 60 * 1000);
 </script>
 </body>
-</html>
 </html>
