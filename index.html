@@ -7,54 +7,34 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap');
 :root {
-  --bg: #080b10;
-  --surface: #0d1118;
-  --card: #111620;
-  --border: #1e2535;
-  --accent: #c0392b;
-  --accent2: #e74c3c;
-  --accent3: #ff6b5b;
-  --text: #dce3f0;
-  --muted: #4a5570;
-  --glow: rgba(192,57,43,.18);
+  --bg: #080b10; --surface: #0d1118; --card: #111620; --border: #1e2535;
+  --accent: #c0392b; --accent2: #e74c3c; --accent3: #ff6b5b;
+  --text: #dce3f0; --muted: #4a5570; --glow: rgba(192,57,43,.18);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Barlow', sans-serif;
-  min-height: 100vh;
+  background: var(--bg); color: var(--text);
+  font-family: 'Barlow', sans-serif; min-height: 100vh;
   background-image:
     radial-gradient(ellipse 60% 40% at 80% 0%, rgba(192,57,43,.08) 0%, transparent 65%),
     radial-gradient(ellipse 40% 30% at 10% 100%, rgba(192,57,43,.05) 0%, transparent 60%);
 }
 header {
-  background: rgba(13,17,24,.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 28px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background: rgba(13,17,24,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); padding: 0 28px; height: 60px;
+  display: flex; align-items: center; gap: 18px; position: sticky; top: 0; z-index: 100;
 }
 .logo-wrap { display: flex; align-items: center; gap: 12px; }
 .logo-icon {
   width: 32px; height: 32px;
   background: linear-gradient(135deg, var(--accent), var(--accent3));
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 15px; color: #fff;
-  letter-spacing: -0.5px; flex-shrink: 0;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 15px;
+  color: #fff; letter-spacing: -0.5px; flex-shrink: 0;
   box-shadow: 0 0 16px rgba(192,57,43,.4);
 }
 header h1 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 22px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22px;
   letter-spacing: 4px; text-transform: uppercase;
   background: linear-gradient(90deg, #fff 0%, var(--accent3) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -68,160 +48,85 @@ header h1 {
 #status.loading .dot { background: var(--accent3); animation: pulse 1s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
 .top-bar {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 28px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  flex-wrap: wrap;
+  display: flex; align-items: center; gap: 12px; padding: 14px 28px;
+  background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap;
 }
 #search {
-  flex: 1; max-width: 380px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 9px 16px;
-  color: var(--text);
-  font-family: 'Barlow', sans-serif; font-size: 14px;
-  outline: none;
+  flex: 1; max-width: 380px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 16px; color: var(--text);
+  font-family: 'Barlow', sans-serif; font-size: 14px; outline: none;
   transition: border-color .2s, box-shadow .2s;
 }
 #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(192,57,43,.12); }
 #search::placeholder { color: var(--muted); }
 #refresh-btn {
-  background: rgba(192,57,43,.12);
-  border: 1px solid rgba(231,76,60,.35);
-  color: var(--accent3);
-  border-radius: 8px;
-  padding: 9px 18px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 600; font-size: 13px; letter-spacing: 1px;
-  cursor: pointer; transition: background .2s;
+  background: rgba(192,57,43,.12); border: 1px solid rgba(231,76,60,.35);
+  color: var(--accent3); border-radius: 8px; padding: 9px 18px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px;
+  letter-spacing: 1px; cursor: pointer; transition: background .2s;
 }
 #refresh-btn:hover { background: rgba(192,57,43,.22); }
 #refresh-btn:disabled { opacity: .35; cursor: default; }
 .cat-filter {
-  display: flex; gap: 6px; flex-wrap: wrap;
-  padding: 10px 28px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 28px;
+  background: var(--surface); border-bottom: 1px solid var(--border);
 }
 .cat-btn {
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  border-radius: 20px;
-  padding: 5px 13px;
-  font-size: 11px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 600; letter-spacing: .5px;
+  background: var(--card); border: 1px solid var(--border); color: var(--muted);
+  border-radius: 20px; padding: 5px 13px; font-size: 11px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: .5px;
   cursor: pointer; transition: all .2s; white-space: nowrap;
 }
-.cat-btn:hover, .cat-btn.active {
-  background: rgba(192,57,43,.15);
-  border-color: var(--accent);
-  color: var(--accent3);
-}
+.cat-btn:hover, .cat-btn.active { background: rgba(192,57,43,.15); border-color: var(--accent); color: var(--accent3); }
 #err-banner {
-  display: none;
-  margin: 14px 28px 0;
-  background: rgba(231,76,60,.08);
-  border: 1px solid rgba(231,76,60,.25);
-  border-radius: 8px;
-  padding: 11px 18px;
-  font-size: 13px; color: #ff8877;
+  display: none; margin: 14px 28px 0; background: rgba(231,76,60,.08);
+  border: 1px solid rgba(231,76,60,.25); border-radius: 8px;
+  padding: 11px 18px; font-size: 13px; color: #ff8877;
 }
 #err-banner.show { display: block; }
 #tip {
-  display: none;
-  margin: 12px 28px 0;
-  padding: 9px 16px;
-  background: rgba(46,204,113,.07);
-  border: 1px solid rgba(46,204,113,.2);
-  border-radius: 8px;
-  font-size: 12px; color: #2ecc71;
+  display: none; margin: 12px 28px 0; padding: 9px 16px;
+  background: rgba(46,204,113,.07); border: 1px solid rgba(46,204,113,.2);
+  border-radius: 8px; font-size: 12px; color: #2ecc71;
 }
 #tip.show { display: block; }
 .content { padding: 24px 28px 48px; }
 .category-section { margin-bottom: 36px; }
 .category-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700; font-size: 11px;
-  letter-spacing: 3px; color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 14px; padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 3px; color: var(--muted); text-transform: uppercase;
+  margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
   display: flex; align-items: center; gap: 8px;
 }
-.category-title::after {
-  content: ''; flex: 1; height: 1px;
-  background: linear-gradient(90deg, var(--border), transparent);
-}
-.ch-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 8px;
-}
+.category-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+.ch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
 .ch-card {
-  position: relative;
-  aspect-ratio: 1;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 10px 8px 26px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  text-decoration: none; color: var(--text);
-  cursor: pointer;
-  transition: background .15s, border-color .15s, transform .15s, box-shadow .15s;
-  overflow: hidden;
+  position: relative; aspect-ratio: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 10px 8px 26px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  text-decoration: none; color: var(--text); cursor: pointer;
+  transition: background .15s, border-color .15s, transform .15s, box-shadow .15s; overflow: hidden;
 }
 .ch-card::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(192,57,43,.07) 0%, transparent 60%);
   opacity: 0; transition: opacity .2s; border-radius: inherit;
 }
-.ch-card:hover {
-  background: #14192a;
-  border-color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(192,57,43,.18);
-}
+.ch-card:hover { background: #14192a; border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(192,57,43,.18); }
 .ch-card:hover::before { opacity: 1; }
 .ch-card:active { transform: translateY(-1px); }
-.ch-num {
-  position: absolute; top: 8px; left: 10px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px; font-weight: 600;
-  color: var(--accent3); letter-spacing: .5px; opacity: .75;
-}
+.ch-num { position: absolute; top: 8px; left: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; color: var(--accent3); letter-spacing: .5px; opacity: .75; }
 .ch-logo { width: 80px; height: 80px; object-fit: contain; border-radius: 6px; }
 .ch-logo-ph {
   width: 80px; height: 80px; border-radius: 10px;
   background: linear-gradient(135deg, var(--accent), var(--accent3));
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 18px; color: #fff; letter-spacing: 1px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18px; color: #fff; letter-spacing: 1px;
 }
-.ch-name {
-  position: absolute; bottom: 7px; left: 0; right: 0;
-  text-align: center; font-size: 10px; font-weight: 500;
-  color: rgba(255,255,255,.85);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  padding: 0 8px;
-}
-.skeleton {
-  background: linear-gradient(90deg, var(--card) 25%, #161d2e 50%, var(--card) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.3s infinite;
-  border-radius: 12px; aspect-ratio: 1;
-}
+.ch-name { position: absolute; bottom: 7px; left: 0; right: 0; text-align: center; font-size: 10px; font-weight: 500; color: rgba(255,255,255,.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 8px; }
+.skeleton { background: linear-gradient(90deg, var(--card) 25%, #161d2e 50%, var(--card) 75%); background-size: 200% 100%; animation: shimmer 1.3s infinite; border-radius: 12px; aspect-ratio: 1; }
 @keyframes shimmer { 0% { background-position: 200%; } 100%{ background-position: -200%; } }
-.empty-state {
-  grid-column: 1 / -1; color: var(--muted);
-  padding: 60px; text-align: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 18px; letter-spacing: 2px;
-}
+.empty-state { grid-column: 1 / -1; color: var(--muted); padding: 60px; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 18px; letter-spacing: 2px; }
 </style>
 </head>
 <body>
@@ -261,17 +166,21 @@ header h1 {
 <script>
 const LG_IT_URL = "https://i.mjh.nz/LG/it.m3u8";
 
+// corsproxy.io ha bloccato i.mjh.nz — usiamo allorigins come principale
 const M3U_SOURCES = [
-  "https://corsproxy.io/?url=" + encodeURIComponent(LG_IT_URL),
   "https://api.allorigins.win/raw?url=" + encodeURIComponent(LG_IT_URL),
-  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
   "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
-  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
+  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
   "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
+  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
+  "https://thingproxy.freeboard.io/fetch/" + LG_IT_URL,
 ];
 
-// Proxy per gli stream — passa attraverso corsproxy così i CDN LG diventano raggiungibili
-const STREAM_PROXY = "https://corsproxy.io/?url=";
+// Per gli stream usiamo allorigins (corsproxy ha bloccato i domini LG)
+const STREAM_PROXIES = [
+  "https://api.allorigins.win/raw?url=",
+  "https://corsproxy.io/?url=",
+];
 
 const LANG_MAP = [
   { lang: "🇮🇹 Italiano", keys: ["italian","italiano","italy"," it ","(it)","rai ","rai1","rai2","rai3","mediaset","canale 5","italia 1","rete 4","la7","dmax","nove","cielo","focus","real time","tv2000","sky tg","sportitalia","k2 ","boing","cartoonito","super!","deejay","radio italia","r101","rtl","virgin radio"] },
@@ -361,7 +270,7 @@ async function loadChannels() {
   document.getElementById("tip").classList.remove("show");
 
   let text = null, lastErr = null;
-  const labels = ["Proxy1·LG-IT","Proxy2·LG-IT","Proxy1·LG-alt","Proxy2·LG-alt","Proxy1·LG-global","Proxy2·LG-global"];
+  const labels = ["allorigins·LG-IT", "allorigins·LG-alt", "corsproxy·LG-alt", "allorigins·LG-global", "corsproxy·LG-global", "thingproxy·LG-IT"];
 
   for (let i = 0; i < M3U_SOURCES.length; i++) {
     try {
@@ -471,14 +380,13 @@ function renderChannels() {
         e.preventDefault();
         if (!ch.url) return;
 
-        // Passa lo stream attraverso corsproxy così i CDN LG diventano raggiungibili
-        let finalUrl = STREAM_PROXY + encodeURIComponent(ch.url);
+        // Usa allorigins come proxy per gli stream (corsproxy blocca i domini LG)
+        let finalUrl = STREAM_PROXIES[0] + encodeURIComponent(ch.url);
 
-        // Aggiungi headers se presenti (User-Agent, Referer)
+        // Aggiungi headers se presenti
         const headers = {};
         if (ch.userAgent) headers["User-Agent"] = ch.userAgent;
         if (ch.referrer) headers["Referer"] = ch.referrer;
-
         if (Object.keys(headers).length > 0) {
           const headersEncoded = encodeURIComponent(JSON.stringify(headers));
           finalUrl = finalUrl + '&headers=' + headersEncoded;
