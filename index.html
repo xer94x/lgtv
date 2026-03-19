@@ -264,13 +264,14 @@ const LG_IT_URL = "https://i.mjh.nz/LG/it.m3u8";
 const M3U_SOURCES = [
   "https://corsproxy.io/?url=" + encodeURIComponent(LG_IT_URL),
   "https://api.allorigins.win/raw?url=" + encodeURIComponent(LG_IT_URL),
+  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
+  "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
+  "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
+  "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
 ];
 
-// Proxy da usare per gli stream
-const STREAM_PROXIES = [
-  "https://corsproxy.io/?url=",
-  "https://api.allorigins.win/raw?url=",
-];
+// Proxy per gli stream — passa attraverso corsproxy così i CDN LG diventano raggiungibili
+const STREAM_PROXY = "https://corsproxy.io/?url=";
 
 const LANG_MAP = [
   { lang: "🇮🇹 Italiano", keys: ["italian","italiano","italy"," it ","(it)","rai ","rai1","rai2","rai3","mediaset","canale 5","italia 1","rete 4","la7","dmax","nove","cielo","focus","real time","tv2000","sky tg","sportitalia","k2 ","boing","cartoonito","super!","deejay","radio italia","r101","rtl","virgin radio"] },
@@ -360,7 +361,7 @@ async function loadChannels() {
   document.getElementById("tip").classList.remove("show");
 
   let text = null, lastErr = null;
-  const labels = ["Proxy1·LG-IT", "Proxy2·LG-IT"];
+  const labels = ["Proxy1·LG-IT","Proxy2·LG-IT","Proxy1·LG-alt","Proxy2·LG-alt","Proxy1·LG-global","Proxy2·LG-global"];
 
   for (let i = 0; i < M3U_SOURCES.length; i++) {
     try {
@@ -470,9 +471,8 @@ function renderChannels() {
         e.preventDefault();
         if (!ch.url) return;
 
-        // Passa sempre lo stream attraverso il proxy CORS
-        // così i domini CDN LG (*.lg.wurl.tv) diventano raggiungibili
-        let finalUrl = STREAM_PROXIES[0] + encodeURIComponent(ch.url);
+        // Passa lo stream attraverso corsproxy così i CDN LG diventano raggiungibili
+        let finalUrl = STREAM_PROXY + encodeURIComponent(ch.url);
 
         // Aggiungi headers se presenti (User-Agent, Referer)
         const headers = {};
