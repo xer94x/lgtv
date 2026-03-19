@@ -480,6 +480,17 @@ function parseM3U(text) {
       if (numMatch) current.num = parseInt(numMatch[1]) || 9999;
       const groupMatch = l.match(/group-title="([^"]+)"/);
       if (groupMatch) current.group = groupMatch[1];
+      const uaMatch = l.match(/user-agent="([^"]+)"/i);
+      if (uaMatch) current.userAgent = uaMatch[1];
+      const refMatch = l.match(/referrer="([^"]+)"/i) || l.match(/referer="([^"]+)"/i);
+      if (refMatch) current.referrer = refMatch[1];
+    } else if (l.startsWith('#EXTVLCOPT')) {
+      if (current) {
+        const uaVlc = l.match(/http-user-agent=(.+)$/i);
+        if (uaVlc) current.userAgent = uaVlc[1].trim();
+        const refVlc = l.match(/http-referrer=(.+)$/i);
+        if (refVlc) current.referrer = refVlc[1].trim();
+      }
     } else if ((l.startsWith('http') || l.startsWith('rtmp')) && current) {
       current.url = l;
       current.cat = getCategory(current.name || '', current.group || '');
@@ -600,7 +611,18 @@ function renderChannels() {
         <span class="ch-name">${ch.name||''}</span>`;
       a.addEventListener("click", e => {
         e.preventDefault();
-        if (ch.url) window.open(ch.url, "_blank", "noopener");
+        if (!ch.url) return;
+        let finalUrl = ch.url;
+        // Aggiungi headers se presenti (per VideoPlayer MPD/M3U8 extension)
+        const headers = {};
+        if (ch.userAgent) headers["User-Agent"] = ch.userAgent;
+        if (ch.referrer)  headers["Referer"]    = ch.referrer;
+        if (Object.keys(headers).length > 0) {
+          const headersEncoded = encodeURIComponent(JSON.stringify(headers));
+          // L'estensione intercetta l'URL direttamente, appendiamo i parametri
+          finalUrl = finalUrl + (finalUrl.includes('?') ? '&' : '?') + 'headers=' + headersEncoded;
+        }
+        window.open(finalUrl, "_blank", "noopener");
       });
       grid.appendChild(a);
     }
