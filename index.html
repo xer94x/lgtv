@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -412,9 +411,11 @@
 
 <script>
 const LG_IT_URL = "https://i.mjh.nz/LG/it.m3u8";
+
+// allorigins prima di corsproxy perché corsproxy.io ha bloccato i.mjh.nz
 const M3U_SOURCES = [
-  "https://corsproxy.io/?url=" + encodeURIComponent(LG_IT_URL),
   "https://api.allorigins.win/raw?url=" + encodeURIComponent(LG_IT_URL),
+  "https://corsproxy.io/?url=" + encodeURIComponent(LG_IT_URL),
   "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
   "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lgchannels_it.m3u"),
   "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
@@ -509,7 +510,7 @@ async function loadChannels() {
   document.getElementById("tip").classList.remove("show");
 
   let text = null, lastErr = null;
-  const labels = ["Proxy1·LG-IT","Proxy2·LG-IT","Proxy1·LG-alt","Proxy2·LG-alt","Proxy1·LG-global","Proxy2·LG-global"];
+  const labels = ["allorigins·LG-IT","corsproxy·LG-IT","corsproxy·LG-alt","allorigins·LG-alt","corsproxy·LG-global","allorigins·LG-global"];
   for (let i = 0; i < M3U_SOURCES.length; i++) {
     try {
       setStatus("loading", `Tentativo ${i+1}/${M3U_SOURCES.length} (${labels[i]})...`);
@@ -525,7 +526,6 @@ async function loadChannels() {
     if (!text) throw lastErr || new Error("Nessuna sorgente disponibile");
     channelsData = parseM3U(text);
     channelsData.sort((a, b) => (a.num || 9999) - (b.num || 9999));
-
     document.getElementById("ch-count").textContent = `${channelsData.length} canali IT`;
     setStatus("ok", "Online ✓");
     document.getElementById("tip").classList.add("show");
@@ -546,7 +546,6 @@ function renderCatFilter() {
   const existingCats = new Set(channelsData.map(c => c.cat));
   const catOrder = ["Tutti","🇮🇹 Italiano","🇬🇧 English","🇩🇪 Deutsch","🇫🇷 Français","🇪🇸 Español","🇵🇹 Português","🇧🇷 Português (BR)","🇳🇱 Nederlands","🇵🇱 Polski","🇸🇪 Svenska","🇷🇺 Русский","🇹🇷 Türkçe","🇦🇷 Español (LA)","🇨🇳 中文","🇯🇵 日本語","🇰🇷 한국어","🇮🇳 Hindi","🇸🇦 عربي","🌐 Altro"];
   const sorted = catOrder.filter(c => c === "Tutti" || existingCats.has(c));
-
   sorted.forEach(cat => {
     const btn = document.createElement("button");
     btn.className = "cat-btn" + (cat === activeCat ? " active" : "");
@@ -620,7 +619,6 @@ function renderChannels() {
         if (ch.referrer)  headers["Referer"]    = ch.referrer;
         if (Object.keys(headers).length > 0) {
           const headersEncoded = encodeURIComponent(JSON.stringify(headers));
-          // L'estensione intercetta l'URL direttamente, appendiamo i parametri
           finalUrl = finalUrl + (finalUrl.includes('?') ? '&' : '?') + 'headers=' + headersEncoded;
         }
         window.open(finalUrl, "_blank", "noopener");
