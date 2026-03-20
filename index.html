@@ -17,7 +17,6 @@
     --accent3: #ff6b5b;
     --text: #dce3f0;
     --muted: #4a5570;
-    --glow: rgba(192,57,43,.18);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,7 +31,6 @@
       radial-gradient(ellipse 40% 30% at 10% 100%, rgba(192,57,43,.05) 0%, transparent 60%);
   }
 
-  /* ── HEADER ── */
   header {
     background: rgba(13,17,24,.92);
     backdrop-filter: blur(12px);
@@ -47,331 +45,174 @@
     z-index: 100;
   }
 
-  .logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
 
   .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 32px; height: 32px;
     background: linear-gradient(135deg, var(--accent), var(--accent3));
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 15px;
-    color: #fff;
-    letter-spacing: -0.5px;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 15px;
+    color: #fff; letter-spacing: -0.5px; flex-shrink: 0;
     box-shadow: 0 0 16px rgba(192,57,43,.4);
   }
 
   header h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 22px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22px;
+    letter-spacing: 4px; text-transform: uppercase;
     background: linear-gradient(90deg, #fff 0%, var(--accent3) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  .header-right {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
 
-  #ch-count {
-    font-size: 12px;
-    color: var(--muted);
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: 1px;
-  }
+  #ch-count { font-size: 12px; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px; }
 
-  #status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  #status .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--muted);
-    transition: background .3s;
-  }
-
+  #status { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+  #status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); transition: background .3s; }
   #status.ok .dot   { background: #2ecc71; box-shadow: 0 0 6px #2ecc71; }
   #status.err .dot  { background: var(--accent2); box-shadow: 0 0 6px var(--accent2); }
-  #status.loading .dot {
-    background: var(--accent3);
-    animation: pulse 1s ease-in-out infinite;
-  }
-
+  #status.loading .dot { background: var(--accent3); animation: pulse 1s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
 
-  /* ── TOP BAR ── */
   .top-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 28px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
+    display: flex; align-items: center; gap: 12px; padding: 14px 28px;
+    background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap;
   }
 
   #search {
-    flex: 1;
-    max-width: 380px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 9px 16px;
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    outline: none;
+    flex: 1; max-width: 380px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 9px 16px; color: var(--text);
+    font-family: 'Barlow', sans-serif; font-size: 14px; outline: none;
     transition: border-color .2s, box-shadow .2s;
   }
-
-  #search:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(192,57,43,.12);
-  }
-
+  #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(192,57,43,.12); }
   #search::placeholder { color: var(--muted); }
 
   #refresh-btn {
-    background: rgba(192,57,43,.12);
-    border: 1px solid rgba(231,76,60,.35);
-    color: var(--accent3);
-    border-radius: 8px;
-    padding: 9px 18px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: background .2s;
+    background: rgba(192,57,43,.12); border: 1px solid rgba(231,76,60,.35);
+    color: var(--accent3); border-radius: 8px; padding: 9px 18px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px;
+    letter-spacing: 1px; cursor: pointer; transition: background .2s;
   }
-
   #refresh-btn:hover { background: rgba(192,57,43,.22); }
   #refresh-btn:disabled { opacity: .35; cursor: default; }
 
-  /* ── CATEGORY FILTER ── */
   .cat-filter {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    padding: 10px 28px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 28px;
+    background: var(--surface); border-bottom: 1px solid var(--border);
   }
 
   .cat-btn {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 20px;
-    padding: 5px 13px;
-    font-size: 11px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    letter-spacing: .5px;
-    cursor: pointer;
-    transition: all .2s;
-    white-space: nowrap;
+    background: var(--card); border: 1px solid var(--border); color: var(--muted);
+    border-radius: 20px; padding: 5px 13px; font-size: 11px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: .5px;
+    cursor: pointer; transition: all .2s; white-space: nowrap;
+  }
+  .cat-btn:hover, .cat-btn.active {
+    background: rgba(192,57,43,.15); border-color: var(--accent); color: var(--accent3);
   }
 
-  .cat-btn:hover,
-  .cat-btn.active {
-    background: rgba(192,57,43,.15);
-    border-color: var(--accent);
-    color: var(--accent3);
-  }
-
-  /* ── BANNERS ── */
   #err-banner {
-    display: none;
-    margin: 14px 28px 0;
-    background: rgba(231,76,60,.08);
-    border: 1px solid rgba(231,76,60,.25);
-    border-radius: 8px;
-    padding: 11px 18px;
-    font-size: 13px;
-    color: #ff8877;
+    display: none; margin: 14px 28px 0; background: rgba(231,76,60,.08);
+    border: 1px solid rgba(231,76,60,.25); border-radius: 8px;
+    padding: 11px 18px; font-size: 13px; color: #ff8877;
   }
-
   #err-banner.show { display: block; }
 
   #tip {
-    display: none;
-    margin: 12px 28px 0;
-    padding: 9px 16px;
-    background: rgba(46,204,113,.07);
-    border: 1px solid rgba(46,204,113,.2);
-    border-radius: 8px;
-    font-size: 12px;
-    color: #2ecc71;
+    display: none; margin: 12px 28px 0; padding: 9px 16px;
+    background: rgba(46,204,113,.07); border: 1px solid rgba(46,204,113,.2);
+    border-radius: 8px; font-size: 12px; color: #2ecc71;
   }
-
   #tip.show { display: block; }
 
-  /* ── MAIN CONTENT ── */
   .content { padding: 24px 28px 48px; }
 
-  .category-section { margin-bottom: 36px; }
+  .cat-section { margin-bottom: 36px; }
 
-  .category-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .cat-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 3px; color: var(--muted); text-transform: uppercase;
+    margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+    cursor: pointer; user-select: none;
   }
-
-  .category-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
+  .cat-title:hover { color: var(--accent3); }
+  .cat-title .arrow {
+    font-size: 9px; color: var(--accent); display: inline-block;
+    transition: transform .2s; flex-shrink: 0;
+  }
+  .cat-title.collapsed .arrow { transform: rotate(-90deg); }
+  .cat-title .cnt {
+    margin-left: auto; font-size: 10px; font-weight: 600; color: var(--muted);
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1px 8px; letter-spacing: 0;
+  }
+  .cat-title::after {
+    content: ''; flex: 1; height: 1px;
     background: linear-gradient(90deg, var(--border), transparent);
   }
 
-  /* ── CHANNEL GRID ── */
+  .cat-body { overflow: hidden; transition: max-height .3s ease; }
+  .cat-body.collapsed { max-height: 0 !important; }
+
   .ch-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 8px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px; padding-bottom: 4px;
   }
 
   .ch-card {
-    position: relative;
-    aspect-ratio: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 8px 26px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    text-decoration: none;
-    color: var(--text);
-    cursor: pointer;
-    transition: background .15s, border-color .15s, transform .15s, box-shadow .15s;
-    overflow: hidden;
+    position: relative; aspect-ratio: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 10px 8px 26px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    text-decoration: none; color: var(--text); cursor: pointer;
+    transition: background .15s, border-color .15s, transform .15s, box-shadow .15s; overflow: hidden;
   }
-
   .ch-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(192,57,43,.07) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity .2s;
-    border-radius: inherit;
+    opacity: 0; transition: opacity .2s; border-radius: inherit;
   }
-
   .ch-card:hover {
-    background: #14192a;
-    border-color: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(192,57,43,.18);
+    background: #14192a; border-color: var(--accent);
+    transform: translateY(-3px); box-shadow: 0 6px 20px rgba(192,57,43,.18);
   }
-
   .ch-card:hover::before { opacity: 1; }
   .ch-card:active { transform: translateY(-1px); }
 
   .ch-num {
-    position: absolute;
-    top: 8px;
-    left: 10px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent3);
-    letter-spacing: .5px;
-    opacity: .75;
+    position: absolute; top: 8px; left: 10px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
+    color: var(--accent3); letter-spacing: .5px; opacity: .75;
   }
 
-  .ch-logo {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 6px;
-  }
+  .ch-logo { width: 80px; height: 80px; object-fit: contain; border-radius: 6px; }
 
   .ch-logo-ph {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
+    width: 80px; height: 80px; border-radius: 10px;
     background: linear-gradient(135deg, var(--accent), var(--accent3));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 18px;
-    color: #fff;
-    letter-spacing: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18px;
+    color: #fff; letter-spacing: 1px;
   }
 
   .ch-name {
-    position: absolute;
-    bottom: 7px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 10px;
-    font-weight: 500;
-    color: rgba(255,255,255,.85);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0 8px;
+    position: absolute; bottom: 7px; left: 0; right: 0; text-align: center;
+    font-size: 10px; font-weight: 500; color: rgba(255,255,255,.85);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 8px;
   }
 
-  /* ── SKELETON ── */
   .skeleton {
     background: linear-gradient(90deg, var(--card) 25%, #161d2e 50%, var(--card) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.3s infinite;
-    border-radius: 12px;
-    aspect-ratio: 1;
+    background-size: 200% 100%; animation: shimmer 1.3s infinite;
+    border-radius: 12px; aspect-ratio: 1;
   }
+  @keyframes shimmer { 0%{background-position:200%} 100%{background-position:-200%} }
 
-  @keyframes shimmer {
-    0%  { background-position: 200%; }
-    100%{ background-position: -200%; }
-  }
-
-  /* ── EMPTY STATE ── */
   .empty-state {
-    grid-column: 1 / -1;
-    color: var(--muted);
-    padding: 60px;
-    text-align: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px;
-    letter-spacing: 2px;
+    grid-column: 1/-1; color: var(--muted); padding: 60px; text-align: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 18px; letter-spacing: 2px;
   }
 </style>
 </head>
@@ -412,7 +253,6 @@
 <script>
 const LG_IT_URL = "https://i.mjh.nz/LG/it.m3u8";
 
-// allorigins prima di corsproxy perché corsproxy.io ha bloccato i.mjh.nz
 const M3U_SOURCES = [
   "https://api.allorigins.win/raw?url=" + encodeURIComponent(LG_IT_URL),
   "https://corsproxy.io/?url=" + encodeURIComponent(LG_IT_URL),
@@ -421,35 +261,6 @@ const M3U_SOURCES = [
   "https://corsproxy.io/?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
   "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
 ];
-
-const LANG_MAP = [
-  { lang: "🇮🇹 Italiano",  keys: ["italian","italiano","italy"," it ","(it)","rai ","rai1","rai2","rai3","mediaset","canale 5","italia 1","rete 4","la7","dmax","nove","cielo","focus","real time","tv2000","sky tg","sportitalia","k2 ","boing","cartoonito","super!","deejay","radio italia","r101","rtl","virgin radio"] },
-  { lang: "🇬🇧 English",   keys: ["english","united kingdom"," uk ","(uk)"," us ","(us)","united states","bbc","itv","channel 4","channel 5","sky one","sky atlantic","discovery","nat geo","history channel","cnn","fox ","nbc","abc ","cbs ","hbo","comedy central","cartoon network","nickelodeon","paramount","mtv","food network","hgtv","tlc ","travel channel","amc ","syfy","animal planet"] },
-  { lang: "🇩🇪 Deutsch",   keys: ["german","deutsch","germany"," de ","(de)","ard","zdf","sat.1","sat1","pro7","pro sieben","rtl","kabel","vox ","tele 5","sixx","sport1","n24","welt ","phoenix","kika","tagesschau"] },
-  { lang: "🇫🇷 Français",  keys: ["french","français","france"," fr ","(fr)","tf1","france 2","france 3","france 4","france 5","m6 ","canal+","arte","bfm","cnews","lci ","c8 ","tmc","w9 ","nrj12","gulli","6ter","comedie","paris premiere"] },
-  { lang: "🇪🇸 Español",   keys: ["spanish","español","spain","espana","españa"," es ","(es)","la1","la2","telecinco","antena 3","cuatro","la sexta","tve","television espanola","canal sur","telemadrid","rtve"] },
-  { lang: "🇵🇹 Português", keys: ["portuguese","português","portugal"," pt ","(pt)","rtp","sic ","tvi "] },
-  { lang: "🇧🇷 Português (BR)", keys: ["brasil","brazil"," br ","(br)","globo","record","sbt ","band ","sportv br","multishow","telecine"] },
-  { lang: "🇳🇱 Nederlands",keys: ["dutch","netherlands","holland"," nl ","(nl)","npo ","rtl4","rtl5","rtl7","rtl8","veronica nl"] },
-  { lang: "🇵🇱 Polski",    keys: ["polish","poland","polska"," pl ","(pl)","tvp","polsat","tvn "] },
-  { lang: "🇸🇪 Svenska",   keys: ["swedish","sweden","sverige"," se ","(se)","svt","tv4 ","kanal 5","kanal9"] },
-  { lang: "🇷🇺 Русский",   keys: ["russian","russia"," ru ","(ru)","perviy","russia 1","ntv ","ren tv","tnt ","channel one","rtvi"] },
-  { lang: "🇹🇷 Türkçe",    keys: ["turkish","turkey","türkiye"," tr ","(tr)","trt ","atv ","kanal d","show tv","star tv","fox tr","haber turk","ntv tr"] },
-  { lang: "🇦🇷 Español (LA)", keys: ["latin","latinoamerica","argentina","mexico","colombia","chile"," la ","(la)","telefe","azteca","univision","telemundo","canal 13"] },
-  { lang: "🇨🇳 中文",       keys: ["chinese","china","taiwan","mandarin","cantonese"," cn ","(cn)"," tw ","(tw)","cctv","tvbs","phoenix tv","ntdtv"] },
-  { lang: "🇯🇵 日本語",     keys: ["japanese","japan"," jp ","(jp)","nhk","tv asahi","fuji tv","tbs jp","nippon"] },
-  { lang: "🇰🇷 한국어",     keys: ["korean","korea"," kr ","(kr)","kbs","mbc ","sbs kr","arirang","ytn","jtbc"] },
-  { lang: "🇮🇳 Hindi",     keys: ["hindi","india","indian"," in ","(in)","zee","star plus","sony ","colors ","aaj tak","ndtv","times now","sun tv","dd national"] },
-  { lang: "🇸🇦 عربي",      keys: ["arabic","arab","arabe"," ar ","(ar)","al jazeera","al arabiya","mbc ","rotana","nile","alaraby","al mayadeen"] },
-];
-
-function getCategory(name, group) {
-  const n = (" " + (name||"") + " " + (group||"") + " ").toLowerCase();
-  for (const { lang, keys } of LANG_MAP) {
-    if (keys.some(k => n.includes(k))) return lang;
-  }
-  return "🌐 Altro";
-}
 
 let channelsData = [];
 let activeCat = "Tutti";
@@ -474,28 +285,18 @@ function parseM3U(text) {
     const l = line.trim();
     if (l.startsWith('#EXTINF')) {
       current = {};
-      const nameMatch = l.match(/,(.+)$/);
-      if (nameMatch) current.name = nameMatch[1].trim();
-      const logoMatch = l.match(/tvg-logo="([^"]+)"/);
-      if (logoMatch) current.logo = logoMatch[1];
-      const numMatch = l.match(/tvg-chno="([^"]+)"/);
-      if (numMatch) current.num = parseInt(numMatch[1]) || 9999;
-      const groupMatch = l.match(/group-title="([^"]+)"/);
-      if (groupMatch) current.group = groupMatch[1];
-      const uaMatch = l.match(/user-agent="([^"]+)"/i);
-      if (uaMatch) current.userAgent = uaMatch[1];
-      const refMatch = l.match(/referrer="([^"]+)"/i) || l.match(/referer="([^"]+)"/i);
+      const nameMatch  = l.match(/,(.+)$/);                  if (nameMatch)  current.name      = nameMatch[1].trim();
+      const logoMatch  = l.match(/tvg-logo="([^"]+)"/);      if (logoMatch)  current.logo      = logoMatch[1];
+      const numMatch   = l.match(/tvg-chno="([^"]+)"/);      if (numMatch)   current.num       = parseInt(numMatch[1]) || 9999;
+      const groupMatch = l.match(/group-title="([^"]+)"/);   if (groupMatch) current.group     = groupMatch[1];
+      const uaMatch    = l.match(/user-agent="([^"]+)"/i);   if (uaMatch)    current.userAgent = uaMatch[1];
+      const refMatch   = l.match(/referrer="([^"]+)"/i) || l.match(/referer="([^"]+)"/i);
       if (refMatch) current.referrer = refMatch[1];
-    } else if (l.startsWith('#EXTVLCOPT')) {
-      if (current) {
-        const uaVlc = l.match(/http-user-agent=(.+)$/i);
-        if (uaVlc) current.userAgent = uaVlc[1].trim();
-        const refVlc = l.match(/http-referrer=(.+)$/i);
-        if (refVlc) current.referrer = refVlc[1].trim();
-      }
+    } else if (l.startsWith('#EXTVLCOPT') && current) {
+      const uaVlc  = l.match(/http-user-agent=(.+)$/i); if (uaVlc)  current.userAgent = uaVlc[1].trim();
+      const refVlc = l.match(/http-referrer=(.+)$/i);   if (refVlc) current.referrer  = refVlc[1].trim();
     } else if ((l.startsWith('http') || l.startsWith('rtmp')) && current) {
       current.url = l;
-      current.cat = getCategory(current.name || '', current.group || '');
       channels.push(current);
       current = null;
     }
@@ -529,6 +330,7 @@ async function loadChannels() {
     document.getElementById("ch-count").textContent = `${channelsData.length} canali IT`;
     setStatus("ok", "Online ✓");
     document.getElementById("tip").classList.add("show");
+    activeCat = "Tutti";
     renderCatFilter();
     renderChannels();
   } catch(e) {
@@ -540,12 +342,21 @@ async function loadChannels() {
   document.getElementById("refresh-btn").disabled = false;
 }
 
+function sortedGroupKeys(groups) {
+  return Object.keys(groups).sort((a, b) => {
+    if (a === "—") return 1;
+    if (b === "—") return -1;
+    return a.localeCompare(b, 'it');
+  });
+}
+
 function renderCatFilter() {
   const el = document.getElementById("cat-filter");
   el.innerHTML = "";
-  const existingCats = new Set(channelsData.map(c => c.cat));
-  const catOrder = ["Tutti","🇮🇹 Italiano","🇬🇧 English","🇩🇪 Deutsch","🇫🇷 Français","🇪🇸 Español","🇵🇹 Português","🇧🇷 Português (BR)","🇳🇱 Nederlands","🇵🇱 Polski","🇸🇪 Svenska","🇷🇺 Русский","🇹🇷 Türkçe","🇦🇷 Español (LA)","🇨🇳 中文","🇯🇵 日本語","🇰🇷 한국어","🇮🇳 Hindi","🇸🇦 عربي","🌐 Altro"];
-  const sorted = catOrder.filter(c => c === "Tutti" || existingCats.has(c));
+  const keys = Array.from(new Set(channelsData.map(c => c.group || "—")));
+  const sorted = ["Tutti", ...keys.sort((a,b) => {
+    if (a==="—") return 1; if (b==="—") return -1; return a.localeCompare(b,'it');
+  })];
   sorted.forEach(cat => {
     const btn = document.createElement("button");
     btn.className = "cat-btn" + (cat === activeCat ? " active" : "");
@@ -555,26 +366,63 @@ function renderCatFilter() {
   });
 }
 
+function buildCard(ch) {
+  const a = document.createElement("a");
+  a.className = "ch-card"; a.href = "#";
+  const initials = (ch.name||'??').split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+  const num = ch.num && ch.num < 9000 ? String(ch.num).padStart(3,'0') : '—';
+  a.innerHTML = `
+    <span class="ch-num">${num}</span>
+    ${ch.logo
+      ? `<img class="ch-logo" src="${ch.logo}" alt="" loading="lazy" onerror="this.outerHTML='<div class=ch-logo-ph>${initials}</div>'">`
+      : `<div class="ch-logo-ph">${initials}</div>`}
+    <span class="ch-name">${ch.name||''}</span>`;
+  a.addEventListener("click", e => {
+    e.preventDefault();
+    if (!ch.url) return;
+    let finalUrl = ch.url;
+    const headers = {};
+    if (ch.userAgent) headers["User-Agent"] = ch.userAgent;
+    if (ch.referrer)  headers["Referer"]    = ch.referrer;
+    if (Object.keys(headers).length > 0) {
+      finalUrl += (finalUrl.includes('?') ? '&' : '?') + 'headers=' + encodeURIComponent(JSON.stringify(headers));
+    }
+    window.open(finalUrl, "_blank", "noopener");
+  });
+  return a;
+}
+
+function toggle(titleEl, bodyEl) {
+  const collapsed = bodyEl.classList.contains('collapsed');
+  if (collapsed) {
+    bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
+    bodyEl.classList.remove('collapsed');
+    titleEl.classList.remove('collapsed');
+    bodyEl.addEventListener('transitionend', () => {
+      if (!bodyEl.classList.contains('collapsed')) bodyEl.style.maxHeight = 'none';
+    }, { once: true });
+  } else {
+    bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
+    requestAnimationFrame(() => {
+      bodyEl.classList.add('collapsed');
+      titleEl.classList.add('collapsed');
+    });
+  }
+}
+
 function renderChannels() {
   const q = document.getElementById("search").value.toLowerCase();
   const filtered = channelsData.filter(c => {
     const ms = !q || (c.name||'').toLowerCase().includes(q) || String(c.num).includes(q);
-    const mc = activeCat === "Tutti" || c.cat === activeCat;
+    const mc = activeCat === "Tutti" || (c.group || "—") === activeCat;
     return ms && mc;
   });
-
-  const groups = {};
-  for (const ch of filtered) {
-    if (!groups[ch.cat]) groups[ch.cat] = [];
-    groups[ch.cat].push(ch);
-  }
 
   const content = document.getElementById("content");
   content.innerHTML = "";
 
   if (filtered.length === 0) {
-    const g = document.createElement("div");
-    g.className = "ch-grid";
+    const g = document.createElement("div"); g.className = "ch-grid";
     g.innerHTML = '<div class="empty-state">NESSUN CANALE TROVATO</div>';
     content.appendChild(g);
     document.getElementById("ch-count").textContent = `0 / ${channelsData.length} canali IT`;
@@ -583,50 +431,29 @@ function renderChannels() {
 
   document.getElementById("ch-count").textContent = `${filtered.length} / ${channelsData.length} canali IT`;
 
-  const catOrder = ["🇮🇹 Italiano","🇬🇧 English","🇩🇪 Deutsch","🇫🇷 Français","🇪🇸 Español","🇵🇹 Português","🇧🇷 Português (BR)","🇳🇱 Nederlands","🇵🇱 Polski","🇸🇪 Svenska","🇷🇺 Русский","🇹🇷 Türkçe","🇦🇷 Español (LA)","🇨🇳 中文","🇯🇵 日本語","🇰🇷 한국어","🇮🇳 Hindi","🇸🇦 عربي","🌐 Altro"];
-  const sortedCats = [...new Set([...catOrder, ...Object.keys(groups)])].filter(c => groups[c]);
+  const groups = {};
+  for (const ch of filtered) {
+    const key = ch.group || "—";
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(ch);
+  }
 
-  for (const cat of sortedCats) {
-    if (!groups[cat]) continue;
-    const sec = document.createElement("div");
-    sec.className = "category-section";
-    const title = document.createElement("div");
-    title.className = "category-title";
-    title.textContent = cat;
-    sec.appendChild(title);
-    const grid = document.createElement("div");
-    grid.className = "ch-grid";
+  for (const key of sortedGroupKeys(groups)) {
+    const chs = groups[key];
+    const sec = document.createElement("div"); sec.className = "cat-section";
 
-    for (const ch of groups[cat]) {
-      const a = document.createElement("a");
-      a.className = "ch-card";
-      a.href = "#";
-      const initials = (ch.name||'??').split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
-      const num = ch.num && ch.num < 9000 ? String(ch.num).padStart(3,'0') : '—';
-      a.innerHTML = `
-        <span class="ch-num">${num}</span>
-        ${ch.logo
-          ? `<img class="ch-logo" src="${ch.logo}" alt="" loading="lazy" onerror="this.outerHTML='<div class=ch-logo-ph>${initials}</div>'">`
-          : `<div class="ch-logo-ph">${initials}</div>`}
-        <span class="ch-name">${ch.name||''}</span>`;
-      a.addEventListener("click", e => {
-        e.preventDefault();
-        if (!ch.url) return;
-        let finalUrl = ch.url;
-        // Aggiungi headers se presenti (per VideoPlayer MPD/M3U8 extension)
-        const headers = {};
-        if (ch.userAgent) headers["User-Agent"] = ch.userAgent;
-        if (ch.referrer)  headers["Referer"]    = ch.referrer;
-        if (Object.keys(headers).length > 0) {
-          const headersEncoded = encodeURIComponent(JSON.stringify(headers));
-          finalUrl = finalUrl + (finalUrl.includes('?') ? '&' : '?') + 'headers=' + headersEncoded;
-        }
-        window.open(finalUrl, "_blank", "noopener");
-      });
-      grid.appendChild(a);
-    }
+    const titleEl = document.createElement("div"); titleEl.className = "cat-title";
+    titleEl.innerHTML = `<span class="arrow">▾</span>${key}<span class="cnt">${chs.length}</span>`;
 
-    sec.appendChild(grid);
+    const bodyEl = document.createElement("div"); bodyEl.className = "cat-body"; bodyEl.style.maxHeight = "none";
+    const grid = document.createElement("div"); grid.className = "ch-grid";
+
+    for (const ch of chs) grid.appendChild(buildCard(ch));
+
+    bodyEl.appendChild(grid);
+    titleEl.onclick = () => toggle(titleEl, bodyEl);
+    sec.appendChild(titleEl);
+    sec.appendChild(bodyEl);
     content.appendChild(sec);
   }
 }
