@@ -22,27 +22,17 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
-    min-height: 100vh;
+    background: var(--bg); color: var(--text);
+    font-family: 'Barlow', sans-serif; min-height: 100vh;
     background-image:
       radial-gradient(ellipse 60% 40% at 80% 0%, rgba(192,57,43,.08) 0%, transparent 65%),
       radial-gradient(ellipse 40% 30% at 10% 100%, rgba(192,57,43,.05) 0%, transparent 60%);
   }
 
   header {
-    background: rgba(13,17,24,.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 28px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    background: rgba(13,17,24,.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 0 28px; height: 60px;
+    display: flex; align-items: center; gap: 18px; position: sticky; top: 0; z-index: 100;
   }
 
   .logo-wrap { display: flex; align-items: center; gap: 12px; }
@@ -50,11 +40,9 @@
   .logo-icon {
     width: 32px; height: 32px;
     background: linear-gradient(135deg, var(--accent), var(--accent3));
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
     font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 15px;
-    color: #fff; letter-spacing: -0.5px; flex-shrink: 0;
-    box-shadow: 0 0 16px rgba(192,57,43,.4);
+    color: #fff; flex-shrink: 0; box-shadow: 0 0 16px rgba(192,57,43,.4);
   }
 
   header h1 {
@@ -65,7 +53,6 @@
   }
 
   .header-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
-
   #ch-count { font-size: 12px; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px; }
 
   #status { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
@@ -285,11 +272,11 @@ function parseM3U(text) {
     const l = line.trim();
     if (l.startsWith('#EXTINF')) {
       current = {};
-      const nameMatch  = l.match(/,(.+)$/);                  if (nameMatch)  current.name      = nameMatch[1].trim();
-      const logoMatch  = l.match(/tvg-logo="([^"]+)"/);      if (logoMatch)  current.logo      = logoMatch[1];
-      const numMatch   = l.match(/tvg-chno="([^"]+)"/);      if (numMatch)   current.num       = parseInt(numMatch[1]) || 9999;
-      const groupMatch = l.match(/group-title="([^"]+)"/);   if (groupMatch) current.group     = groupMatch[1];
-      const uaMatch    = l.match(/user-agent="([^"]+)"/i);   if (uaMatch)    current.userAgent = uaMatch[1];
+      const nameMatch  = l.match(/,(.+)$/);                if (nameMatch)  current.name      = nameMatch[1].trim();
+      const logoMatch  = l.match(/tvg-logo="([^"]+)"/);    if (logoMatch)  current.logo      = logoMatch[1];
+      const numMatch   = l.match(/tvg-chno="([^"]+)"/);    if (numMatch)   current.num       = parseInt(numMatch[1]) || 9999;
+      const groupMatch = l.match(/group-title="([^"]+)"/); if (groupMatch) current.group     = groupMatch[1];
+      const uaMatch    = l.match(/user-agent="([^"]+)"/i); if (uaMatch)    current.userAgent = uaMatch[1];
       const refMatch   = l.match(/referrer="([^"]+)"/i) || l.match(/referer="([^"]+)"/i);
       if (refMatch) current.referrer = refMatch[1];
     } else if (l.startsWith('#EXTVLCOPT') && current) {
@@ -302,6 +289,11 @@ function parseM3U(text) {
     }
   }
   return channels;
+}
+
+// Tieni solo canali con (IT) nel nome (case-insensitive)
+function isItalian(ch) {
+  return /\(it\)/i.test(ch.name || '');
 }
 
 async function loadChannels() {
@@ -325,7 +317,8 @@ async function loadChannels() {
 
   try {
     if (!text) throw lastErr || new Error("Nessuna sorgente disponibile");
-    channelsData = parseM3U(text);
+    const all = parseM3U(text);
+    channelsData = all.filter(isItalian);
     channelsData.sort((a, b) => (a.num || 9999) - (b.num || 9999));
     document.getElementById("ch-count").textContent = `${channelsData.length} canali IT`;
     setStatus("ok", "Online ✓");
@@ -431,6 +424,7 @@ function renderChannels() {
 
   document.getElementById("ch-count").textContent = `${filtered.length} / ${channelsData.length} canali IT`;
 
+  // Raggruppa per group-title
   const groups = {};
   for (const ch of filtered) {
     const key = ch.group || "—";
