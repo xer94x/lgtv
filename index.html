@@ -8,15 +8,9 @@
   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap');
 
   :root {
-    --bg: #080b10;
-    --surface: #0d1118;
-    --card: #111620;
-    --border: #1e2535;
-    --accent: #c0392b;
-    --accent2: #e74c3c;
-    --accent3: #ff6b5b;
-    --text: #dce3f0;
-    --muted: #4a5570;
+    --bg: #080b10; --surface: #0d1118; --card: #111620; --border: #1e2535;
+    --accent: #c0392b; --accent2: #e74c3c; --accent3: #ff6b5b;
+    --text: #dce3f0; --muted: #4a5570;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,9 +28,7 @@
     border-bottom: 1px solid var(--border); padding: 0 28px; height: 60px;
     display: flex; align-items: center; gap: 18px; position: sticky; top: 0; z-index: 100;
   }
-
   .logo-wrap { display: flex; align-items: center; gap: 12px; }
-
   .logo-icon {
     width: 32px; height: 32px;
     background: linear-gradient(135deg, var(--accent), var(--accent3));
@@ -44,17 +36,14 @@
     font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 15px;
     color: #fff; flex-shrink: 0; box-shadow: 0 0 16px rgba(192,57,43,.4);
   }
-
   header h1 {
     font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22px;
     letter-spacing: 4px; text-transform: uppercase;
     background: linear-gradient(90deg, #fff 0%, var(--accent3) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-
   .header-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
   #ch-count { font-size: 12px; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px; }
-
   #status { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
   #status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); transition: background .3s; }
   #status.ok .dot   { background: #2ecc71; box-shadow: 0 0 6px #2ecc71; }
@@ -66,7 +55,6 @@
     display: flex; align-items: center; gap: 12px; padding: 14px 28px;
     background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap;
   }
-
   #search {
     flex: 1; max-width: 380px; background: var(--card); border: 1px solid var(--border);
     border-radius: 8px; padding: 9px 16px; color: var(--text);
@@ -75,7 +63,6 @@
   }
   #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(192,57,43,.12); }
   #search::placeholder { color: var(--muted); }
-
   #refresh-btn {
     background: rgba(192,57,43,.12); border: 1px solid rgba(231,76,60,.35);
     color: var(--accent3); border-radius: 8px; padding: 9px 18px;
@@ -89,16 +76,13 @@
     display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 28px;
     background: var(--surface); border-bottom: 1px solid var(--border);
   }
-
   .cat-btn {
     background: var(--card); border: 1px solid var(--border); color: var(--muted);
     border-radius: 20px; padding: 5px 13px; font-size: 11px;
     font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: .5px;
     cursor: pointer; transition: all .2s; white-space: nowrap;
   }
-  .cat-btn:hover, .cat-btn.active {
-    background: rgba(192,57,43,.15); border-color: var(--accent); color: var(--accent3);
-  }
+  .cat-btn:hover, .cat-btn.active { background: rgba(192,57,43,.15); border-color: var(--accent); color: var(--accent3); }
 
   #err-banner {
     display: none; margin: 14px 28px 0; background: rgba(231,76,60,.08);
@@ -106,6 +90,26 @@
     padding: 11px 18px; font-size: 13px; color: #ff8877;
   }
   #err-banner.show { display: block; }
+
+  /* ── DEBUG PANEL ── */
+  #debug {
+    display: none; margin: 14px 28px 0;
+    background: #0a0f1a; border: 1px solid #2a3550; border-radius: 8px;
+    padding: 14px 18px; font-size: 12px; color: #8ab4d4;
+    font-family: 'Barlow Condensed', sans-serif; letter-spacing: .3px;
+  }
+  #debug.show { display: block; }
+  #debug h3 { font-size: 11px; letter-spacing: 2px; color: var(--accent3); margin-bottom: 10px; text-transform: uppercase; }
+  #debug .dbg-row { margin-bottom: 4px; }
+  #debug .dbg-row span { color: #fff; font-weight: 700; }
+  #debug .dbg-groups { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  #debug .dbg-tag {
+    background: #111d2e; border: 1px solid #2a3550; border-radius: 12px;
+    padding: 3px 10px; font-size: 11px; color: #8ab4d4;
+  }
+  #debug .dbg-tag b { color: var(--accent3); }
+  #debug .dbg-samples { margin-top: 10px; }
+  #debug .dbg-sample { font-size: 11px; color: #6a8aaa; margin-bottom: 2px; }
 
   #tip {
     display: none; margin: 12px 28px 0; padding: 9px 16px;
@@ -115,40 +119,26 @@
   #tip.show { display: block; }
 
   .content { padding: 24px 28px 48px; }
-
   .cat-section { margin-bottom: 36px; }
-
   .cat-title {
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px;
     letter-spacing: 3px; color: var(--muted); text-transform: uppercase;
     margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 8px;
-    cursor: pointer; user-select: none;
+    display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;
   }
   .cat-title:hover { color: var(--accent3); }
-  .cat-title .arrow {
-    font-size: 9px; color: var(--accent); display: inline-block;
-    transition: transform .2s; flex-shrink: 0;
-  }
+  .cat-title .arrow { font-size: 9px; color: var(--accent); display: inline-block; transition: transform .2s; flex-shrink: 0; }
   .cat-title.collapsed .arrow { transform: rotate(-90deg); }
   .cat-title .cnt {
     margin-left: auto; font-size: 10px; font-weight: 600; color: var(--muted);
     background: var(--card); border: 1px solid var(--border);
     border-radius: 10px; padding: 1px 8px; letter-spacing: 0;
   }
-  .cat-title::after {
-    content: ''; flex: 1; height: 1px;
-    background: linear-gradient(90deg, var(--border), transparent);
-  }
-
+  .cat-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
   .cat-body { overflow: hidden; transition: max-height .3s ease; }
   .cat-body.collapsed { max-height: 0 !important; }
 
-  .ch-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 8px; padding-bottom: 4px;
-  }
-
+  .ch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; padding-bottom: 4px; }
   .ch-card {
     position: relative; aspect-ratio: 1; display: flex; flex-direction: column;
     align-items: center; justify-content: center; padding: 10px 8px 26px;
@@ -161,46 +151,21 @@
     background: linear-gradient(135deg, rgba(192,57,43,.07) 0%, transparent 60%);
     opacity: 0; transition: opacity .2s; border-radius: inherit;
   }
-  .ch-card:hover {
-    background: #14192a; border-color: var(--accent);
-    transform: translateY(-3px); box-shadow: 0 6px 20px rgba(192,57,43,.18);
-  }
+  .ch-card:hover { background: #14192a; border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(192,57,43,.18); }
   .ch-card:hover::before { opacity: 1; }
   .ch-card:active { transform: translateY(-1px); }
-
-  .ch-num {
-    position: absolute; top: 8px; left: 10px;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
-    color: var(--accent3); letter-spacing: .5px; opacity: .75;
-  }
-
+  .ch-num { position: absolute; top: 8px; left: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; color: var(--accent3); letter-spacing: .5px; opacity: .75; }
   .ch-logo { width: 80px; height: 80px; object-fit: contain; border-radius: 6px; }
-
   .ch-logo-ph {
     width: 80px; height: 80px; border-radius: 10px;
     background: linear-gradient(135deg, var(--accent), var(--accent3));
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18px;
-    color: #fff; letter-spacing: 1px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18px; color: #fff; letter-spacing: 1px;
   }
-
-  .ch-name {
-    position: absolute; bottom: 7px; left: 0; right: 0; text-align: center;
-    font-size: 10px; font-weight: 500; color: rgba(255,255,255,.85);
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 8px;
-  }
-
-  .skeleton {
-    background: linear-gradient(90deg, var(--card) 25%, #161d2e 50%, var(--card) 75%);
-    background-size: 200% 100%; animation: shimmer 1.3s infinite;
-    border-radius: 12px; aspect-ratio: 1;
-  }
+  .ch-name { position: absolute; bottom: 7px; left: 0; right: 0; text-align: center; font-size: 10px; font-weight: 500; color: rgba(255,255,255,.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 8px; }
+  .skeleton { background: linear-gradient(90deg, var(--card) 25%, #161d2e 50%, var(--card) 75%); background-size: 200% 100%; animation: shimmer 1.3s infinite; border-radius: 12px; aspect-ratio: 1; }
   @keyframes shimmer { 0%{background-position:200%} 100%{background-position:-200%} }
-
-  .empty-state {
-    grid-column: 1/-1; color: var(--muted); padding: 60px; text-align: center;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 18px; letter-spacing: 2px;
-  }
+  .empty-state { grid-column: 1/-1; color: var(--muted); padding: 60px; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 18px; letter-spacing: 2px; }
 </style>
 </head>
 <body>
@@ -212,10 +177,7 @@
   </div>
   <div class="header-right">
     <span id="ch-count">Caricamento...</span>
-    <div id="status" class="loading">
-      <div class="dot"></div>
-      <span id="status-txt">Carico playlist...</span>
-    </div>
+    <div id="status" class="loading"><div class="dot"></div><span id="status-txt">Carico playlist...</span></div>
   </div>
 </header>
 
@@ -226,6 +188,10 @@
 
 <div class="cat-filter" id="cat-filter"></div>
 <div id="err-banner"></div>
+<div id="debug">
+  <h3>🔍 Debug playlist</h3>
+  <div id="debug-body"></div>
+</div>
 <div id="tip">✓ Playlist caricata — clicca un canale per aprire lo stream</div>
 
 <div class="content" id="content">
@@ -249,51 +215,71 @@ const M3U_SOURCES = [
   "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.apsattv.com/lg.m3u"),
 ];
 
-let channelsData = [];
-let activeCat = "Tutti";
+let channelsData = [], activeCat = "Tutti";
 
 function setStatus(state, txt) {
-  const el = document.getElementById("status");
-  el.className = state;
+  document.getElementById("status").className = state;
   document.getElementById("status-txt").textContent = txt;
 }
-
 function showErr(msg) {
   const b = document.getElementById("err-banner");
-  if (msg) { b.textContent = "⚠ " + msg; b.classList.add("show"); }
-  else b.classList.remove("show");
+  msg ? (b.textContent = "⚠ " + msg, b.classList.add("show")) : b.classList.remove("show");
 }
 
 function parseM3U(text) {
-  const lines = text.split('\n');
-  const channels = [];
-  let current = null;
+  const lines = text.split('\n'), channels = [];
+  let cur = null;
   for (const line of lines) {
     const l = line.trim();
     if (l.startsWith('#EXTINF')) {
-      current = {};
-      const nameMatch  = l.match(/,(.+)$/);                if (nameMatch)  current.name      = nameMatch[1].trim();
-      const logoMatch  = l.match(/tvg-logo="([^"]+)"/);    if (logoMatch)  current.logo      = logoMatch[1];
-      const numMatch   = l.match(/tvg-chno="([^"]+)"/);    if (numMatch)   current.num       = parseInt(numMatch[1]) || 9999;
-      const groupMatch = l.match(/group-title="([^"]+)"/); if (groupMatch) current.group     = groupMatch[1];
-      const uaMatch    = l.match(/user-agent="([^"]+)"/i); if (uaMatch)    current.userAgent = uaMatch[1];
-      const refMatch   = l.match(/referrer="([^"]+)"/i) || l.match(/referer="([^"]+)"/i);
-      if (refMatch) current.referrer = refMatch[1];
-    } else if (l.startsWith('#EXTVLCOPT') && current) {
-      const uaVlc  = l.match(/http-user-agent=(.+)$/i); if (uaVlc)  current.userAgent = uaVlc[1].trim();
-      const refVlc = l.match(/http-referrer=(.+)$/i);   if (refVlc) current.referrer  = refVlc[1].trim();
-    } else if ((l.startsWith('http') || l.startsWith('rtmp')) && current) {
-      current.url = l;
-      channels.push(current);
-      current = null;
+      cur = {};
+      const m  = l.match(/,(.+)$/);                if (m)  cur.name      = m[1].trim();
+      const lo = l.match(/tvg-logo="([^"]+)"/);    if (lo) cur.logo      = lo[1];
+      const nu = l.match(/tvg-chno="([^"]+)"/);    if (nu) cur.num       = parseInt(nu[1]) || 9999;
+      const gr = l.match(/group-title="([^"]+)"/); if (gr) cur.group     = gr[1];
+      const ua = l.match(/user-agent="([^"]+)"/i); if (ua) cur.userAgent = ua[1];
+      const rf = l.match(/referrer="([^"]+)"/i) || l.match(/referer="([^"]+)"/i); if (rf) cur.referrer = rf[1];
+    } else if (l.startsWith('#EXTVLCOPT') && cur) {
+      const ua = l.match(/http-user-agent=(.+)$/i); if (ua) cur.userAgent = ua[1].trim();
+      const rf = l.match(/http-referrer=(.+)$/i);   if (rf) cur.referrer  = rf[1].trim();
+    } else if ((l.startsWith('http') || l.startsWith('rtmp')) && cur) {
+      cur.url = l; channels.push(cur); cur = null;
     }
   }
   return channels;
 }
 
-// Tieni solo canali con (IT) nel nome (case-insensitive)
-function isItalian(ch) {
-  return /\(it\)/i.test(ch.name || '');
+function showDebug(all) {
+  const itChannels = all.filter(c => /\(it\)/i.test(c.name || ''));
+
+  // Conta group-title su TUTTI i canali
+  const allGroups = {};
+  for (const c of all) { const k = c.group || '(nessuno)'; allGroups[k] = (allGroups[k]||0)+1; }
+
+  // Conta group-title solo sui canali (IT)
+  const itGroups = {};
+  for (const c of itChannels) { const k = c.group || '(nessuno)'; itGroups[k] = (itGroups[k]||0)+1; }
+
+  // Primi 10 nomi dei canali (IT)
+  const samples = itChannels.slice(0, 10).map(c => `${c.name} | group: "${c.group || '—'}"`);
+
+  // Primi 5 nomi senza (IT) per capire il formato
+  const noIt = all.filter(c => !/\(it\)/i.test(c.name || '')).slice(0, 5).map(c => c.name);
+
+  const el = document.getElementById("debug-body");
+  el.innerHTML = `
+    <div class="dbg-row">Canali totali nella playlist: <span>${all.length}</span></div>
+    <div class="dbg-row">Canali con (IT) nel nome: <span>${itChannels.length}</span></div>
+    <div class="dbg-row">Group-title distinti (TUTTI i canali):</div>
+    <div class="dbg-groups">${Object.entries(allGroups).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="dbg-tag">${k} <b>${v}</b></div>`).join('')}</div>
+    <div class="dbg-row" style="margin-top:10px">Group-title nei canali (IT):</div>
+    <div class="dbg-groups">${Object.entries(itGroups).length ? Object.entries(itGroups).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="dbg-tag">${k} <b>${v}</b></div>`).join('') : '<span style="color:#e74c3c">Nessuno — il filtro (IT) non trova canali!</span>'}</div>
+    <div class="dbg-row" style="margin-top:10px">Primi 10 canali (IT):</div>
+    <div class="dbg-samples">${samples.length ? samples.map(s=>`<div class="dbg-sample">→ ${s}</div>`).join('') : '<div class="dbg-sample" style="color:#e74c3c">Nessun canale trovato con (IT)</div>'}</div>
+    <div class="dbg-row" style="margin-top:10px">Esempi nomi canali senza (IT):</div>
+    <div class="dbg-samples">${noIt.map(s=>`<div class="dbg-sample">→ ${s}</div>`).join('')}</div>
+  `;
+  document.getElementById("debug").classList.add("show");
 }
 
 async function loadChannels() {
@@ -301,6 +287,7 @@ async function loadChannels() {
   setStatus("loading", "Carico playlist...");
   showErr(null);
   document.getElementById("tip").classList.remove("show");
+  document.getElementById("debug").classList.remove("show");
 
   let text = null, lastErr = null;
   const labels = ["allorigins·LG-IT","corsproxy·LG-IT","corsproxy·LG-alt","allorigins·LG-alt","corsproxy·LG-global","allorigins·LG-global"];
@@ -318,8 +305,12 @@ async function loadChannels() {
   try {
     if (!text) throw lastErr || new Error("Nessuna sorgente disponibile");
     const all = parseM3U(text);
-    channelsData = all.filter(isItalian);
-    channelsData.sort((a, b) => (a.num || 9999) - (b.num || 9999));
+
+    // Mostra debug sempre dopo il caricamento
+    showDebug(all);
+
+    channelsData = all.filter(c => /\(it\)/i.test(c.name || ''));
+    channelsData.sort((a, b) => (a.num||9999) - (b.num||9999));
     document.getElementById("ch-count").textContent = `${channelsData.length} canali IT`;
     setStatus("ok", "Online ✓");
     document.getElementById("tip").classList.add("show");
@@ -336,21 +327,14 @@ async function loadChannels() {
 }
 
 function sortedGroupKeys(groups) {
-  return Object.keys(groups).sort((a, b) => {
-    if (a === "—") return 1;
-    if (b === "—") return -1;
-    return a.localeCompare(b, 'it');
-  });
+  return Object.keys(groups).sort((a,b) => { if(a==="—") return 1; if(b==="—") return -1; return a.localeCompare(b,'it'); });
 }
 
 function renderCatFilter() {
   const el = document.getElementById("cat-filter");
   el.innerHTML = "";
   const keys = Array.from(new Set(channelsData.map(c => c.group || "—")));
-  const sorted = ["Tutti", ...keys.sort((a,b) => {
-    if (a==="—") return 1; if (b==="—") return -1; return a.localeCompare(b,'it');
-  })];
-  sorted.forEach(cat => {
+  ["Tutti", ...keys.sort((a,b)=>{ if(a==="—") return 1; if(b==="—") return -1; return a.localeCompare(b,'it'); })].forEach(cat => {
     const btn = document.createElement("button");
     btn.className = "cat-btn" + (cat === activeCat ? " active" : "");
     btn.textContent = cat;
@@ -360,46 +344,32 @@ function renderCatFilter() {
 }
 
 function buildCard(ch) {
-  const a = document.createElement("a");
-  a.className = "ch-card"; a.href = "#";
+  const a = document.createElement("a"); a.className = "ch-card"; a.href = "#";
   const initials = (ch.name||'??').split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
   const num = ch.num && ch.num < 9000 ? String(ch.num).padStart(3,'0') : '—';
-  a.innerHTML = `
-    <span class="ch-num">${num}</span>
-    ${ch.logo
-      ? `<img class="ch-logo" src="${ch.logo}" alt="" loading="lazy" onerror="this.outerHTML='<div class=ch-logo-ph>${initials}</div>'">`
-      : `<div class="ch-logo-ph">${initials}</div>`}
+  a.innerHTML = `<span class="ch-num">${num}</span>
+    ${ch.logo ? `<img class="ch-logo" src="${ch.logo}" alt="" loading="lazy" onerror="this.outerHTML='<div class=ch-logo-ph>${initials}</div>'">` : `<div class="ch-logo-ph">${initials}</div>`}
     <span class="ch-name">${ch.name||''}</span>`;
   a.addEventListener("click", e => {
-    e.preventDefault();
-    if (!ch.url) return;
-    let finalUrl = ch.url;
-    const headers = {};
-    if (ch.userAgent) headers["User-Agent"] = ch.userAgent;
-    if (ch.referrer)  headers["Referer"]    = ch.referrer;
-    if (Object.keys(headers).length > 0) {
-      finalUrl += (finalUrl.includes('?') ? '&' : '?') + 'headers=' + encodeURIComponent(JSON.stringify(headers));
-    }
-    window.open(finalUrl, "_blank", "noopener");
+    e.preventDefault(); if (!ch.url) return;
+    let url = ch.url; const h = {};
+    if (ch.userAgent) h["User-Agent"] = ch.userAgent;
+    if (ch.referrer)  h["Referer"]    = ch.referrer;
+    if (Object.keys(h).length) url += (url.includes('?')?'&':'?') + 'headers=' + encodeURIComponent(JSON.stringify(h));
+    window.open(url, "_blank", "noopener");
   });
   return a;
 }
 
 function toggle(titleEl, bodyEl) {
-  const collapsed = bodyEl.classList.contains('collapsed');
-  if (collapsed) {
+  const col = bodyEl.classList.contains('collapsed');
+  if (col) {
     bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
-    bodyEl.classList.remove('collapsed');
-    titleEl.classList.remove('collapsed');
-    bodyEl.addEventListener('transitionend', () => {
-      if (!bodyEl.classList.contains('collapsed')) bodyEl.style.maxHeight = 'none';
-    }, { once: true });
+    bodyEl.classList.remove('collapsed'); titleEl.classList.remove('collapsed');
+    bodyEl.addEventListener('transitionend', () => { if (!bodyEl.classList.contains('collapsed')) bodyEl.style.maxHeight = 'none'; }, {once:true});
   } else {
     bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
-    requestAnimationFrame(() => {
-      bodyEl.classList.add('collapsed');
-      titleEl.classList.add('collapsed');
-    });
+    requestAnimationFrame(() => { bodyEl.classList.add('collapsed'); titleEl.classList.add('collapsed'); });
   }
 }
 
@@ -407,12 +377,11 @@ function renderChannels() {
   const q = document.getElementById("search").value.toLowerCase();
   const filtered = channelsData.filter(c => {
     const ms = !q || (c.name||'').toLowerCase().includes(q) || String(c.num).includes(q);
-    const mc = activeCat === "Tutti" || (c.group || "—") === activeCat;
+    const mc = activeCat === "Tutti" || (c.group||"—") === activeCat;
     return ms && mc;
   });
 
-  const content = document.getElementById("content");
-  content.innerHTML = "";
+  const content = document.getElementById("content"); content.innerHTML = "";
 
   if (filtered.length === 0) {
     const g = document.createElement("div"); g.className = "ch-grid";
@@ -424,31 +393,20 @@ function renderChannels() {
 
   document.getElementById("ch-count").textContent = `${filtered.length} / ${channelsData.length} canali IT`;
 
-  // Raggruppa per group-title
   const groups = {};
-  for (const ch of filtered) {
-    const key = ch.group || "—";
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(ch);
-  }
+  for (const ch of filtered) { const k = ch.group||"—"; if (!groups[k]) groups[k]=[]; groups[k].push(ch); }
 
   for (const key of sortedGroupKeys(groups)) {
     const chs = groups[key];
     const sec = document.createElement("div"); sec.className = "cat-section";
-
     const titleEl = document.createElement("div"); titleEl.className = "cat-title";
     titleEl.innerHTML = `<span class="arrow">▾</span>${key}<span class="cnt">${chs.length}</span>`;
-
     const bodyEl = document.createElement("div"); bodyEl.className = "cat-body"; bodyEl.style.maxHeight = "none";
     const grid = document.createElement("div"); grid.className = "ch-grid";
-
     for (const ch of chs) grid.appendChild(buildCard(ch));
-
     bodyEl.appendChild(grid);
     titleEl.onclick = () => toggle(titleEl, bodyEl);
-    sec.appendChild(titleEl);
-    sec.appendChild(bodyEl);
-    content.appendChild(sec);
+    sec.appendChild(titleEl); sec.appendChild(bodyEl); content.appendChild(sec);
   }
 }
 
